@@ -9,11 +9,30 @@ Subscribe to Tikfly and copy your API key:
 
 ## Install via Smithery (recommended)
 
+> https://smithery.ai/servers/tikflydotio/tikfly-mcp
+
+#### 1. Install Smithery CLI
 ```bash
-npx @smithery/cli install tikfly-mcp --client claude
+npm install -g @smithery/cli@latest
 ```
 
-When prompted, paste your **API Key**.
+#### 2. Create a namespace
+```bash
+smithery namespace create {your-namespace}
+```
+
+#### 3. Use this server
+
+```bash
+# Add this server
+smithery mcp add tikflydotio/tikfly-mcp --headers '{"API-KEY":"YOUR-API-KEY"}'
+
+# List available tools
+smithery tool list {connection}
+
+# Call a tool
+smithery tool call {connection} {tool_name} '{"key": "value"}'
+```
 
 ## Manual setup (Claude Desktop)
 
@@ -81,5 +100,6 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 
 ```bash
 npm install
-API_KEY=your_key npm run dev
+npm run build
+API_KEY=YOUR_API_KEY npx @modelcontextprotocol/inspector node dist/index.js
 ```

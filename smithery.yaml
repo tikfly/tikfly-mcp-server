@@ -1,0 +1,35 @@
+name: tikfly-mcp-server
+description: "MCP Server for Tikfly – Unofficial Tiktok API at scale without the usual limitations. Fetch Tiktok user profiles, posts, and video data"
+version: 1.0.0
+license: MIT
+homepage: https://tikfly.io
+
+build:
+  dockerfile: Dockerfile
+
+configSchema:
+  type: object
+  required:
+    - apiKey
+  properties:
+    apiKey:
+      type: string
+      title: Tikfly API Key
+      description: >
+        Your API Key. Get Your API Key at
+        https://docs.tikfly.io/getting-started/quickstart
+        then copy the key from the "Security" tab.
+      x-secret: true
+
+env:
+  API_KEY: "{{config.apiKey}}"
+
+tools:
+  - name: get_user_info
+    description: Get TikTok user profile by username
+  - name: get_user_info_v2
+    description: Get TikTok user profile with region data
+  - name: get_user_info_by_id
+    description: Get TikTok user profile by numeric ID or secUid
+  - name: get_user_posts
+    description: List videos posted by a TikTok user (paginated)
